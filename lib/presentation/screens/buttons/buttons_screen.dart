@@ -81,8 +81,8 @@ class _ButtonsView extends StatelessWidget {
               onPressed: (){}, 
               label: const Text("TextButton.icon")
             ),
-            // Boton 9
-            // TODO: Custom button
+            // Boton 9: boton personalizado
+            const CustomButton(),
             // Boton 10
             IconButton(
               onPressed: (){}, 
@@ -103,3 +103,33 @@ class _ButtonsView extends StatelessWidget {
   }
 }
 
+// BOTON PERSONALIZADO
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    final colors = Theme.of(context).colorScheme;
+
+    return ClipRRect( // bordes redondeados
+      borderRadius: BorderRadius.circular(10),
+      child: Material(
+        color: colors.primary,
+        child: InkWell( //Animacion al pulsar
+          onTap: (){},
+          child: const Padding( //margen hasta el texto
+            padding: EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 120
+            ),
+            child: Text(
+              "Boton personalizado!",
+              style: TextStyle( color: Colors.white),  
+            )
+          ),
+        ),
+      ),
+    );
+  }
+}
