@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
-import 'package:widgets_app/presentation/screens/buttons/buttons_screen.dart';
+import 'package:go_router/go_router.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
 class _HomeView extends StatelessWidget {
   const _HomeView();
@@ -35,6 +37,7 @@ class _HomeView extends StatelessWidget {
   }
 }
 
+
 class _CustomListTile extends StatelessWidget {
   const _CustomListTile({
     required this.menuItem,
@@ -45,24 +48,16 @@ class _CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final Colors = Theme.of(context).colorScheme;
+    final colors = Theme.of(context).colorScheme;
 
     return ListTile(
-      leading: Icon( menuItem.icon, color: Colors.primary ), // muestra el icono de cada elemento
-      trailing: Icon( Icons.arrow_forward_ios_rounded, color: Colors.primary ), // flecha en cada elemento (android?)
+      leading: Icon( menuItem.icon, color: colors.primary ), // muestra el icono de cada elemento
+      trailing: Icon( Icons.arrow_forward_ios_rounded, color: colors.primary ), // flecha en cada elemento (android?)
       title: Text(menuItem.title), // muestra el titulo de cada elemento
       subtitle: Text(menuItem.subTitle), // muestra subtitulo de cada elemento
-      onTap: () { // SUPERPONE UNA NUEVA PANTALLA
-        
-        // Navigator.of(context).push( //push superpone una pantalla y pop la retira
-        //  MaterialPageRoute(
-        //    builder: (context) => const ButtonsScreen()
-        //  )
-        //);
-
-        // Llama al link de cada objeto que podemos ver en el 
-        // archivo /config/menu/menu_items.dart
-        Navigator.pushNamed(context, menuItem.link);
+      onTap: () { 
+        // SUPERPONE UNA NUEVA PANTALLA
+        context.push( menuItem.link );
       },
     );
   }
