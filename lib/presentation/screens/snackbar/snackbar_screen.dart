@@ -83,7 +83,7 @@ P.D. No dudes en compartir mi aplicación con tus colegas y amigos. ¡Cuantos m�
               onPressed: (){
                 openDialog(context);
               }, 
-              child: Text("Mostrar dialogo personalizado")
+              child: Text("CONDICIONES ABUSIBAS\n(Mostrar dialogo personalizado)")
             )
           ]
         ),
