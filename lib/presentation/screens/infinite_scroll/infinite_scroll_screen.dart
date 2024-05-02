@@ -35,6 +35,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
   @override
   void dispose() {
     scrollController.dispose();
+    // Indica que el scroll controller no esta montado
     isMounted = false;
     super.dispose();
   }
