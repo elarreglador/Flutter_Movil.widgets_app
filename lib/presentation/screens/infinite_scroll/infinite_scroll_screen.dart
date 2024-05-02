@@ -103,7 +103,10 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
       //Boton flotante de regreso
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(),
-        child: const Icon(Icons.arrow_back),
+        // icono de carga o flecha de retorno
+        child: isLoading ? 
+          const CircularProgressIndicator():
+          const Icon(Icons.arrow_back)
       ),
     );
   }
