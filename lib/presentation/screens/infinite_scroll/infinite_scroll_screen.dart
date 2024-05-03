@@ -58,6 +58,26 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     setState(() {});
   }
 
+
+  // borra todas las imagenes ya vistas y muestra las siguientes
+  Future<void> onRefresh() async{
+    if (!isMounted) return;
+
+    isLoading = true;
+    setState(() {    });
+
+    // espera para ver el icono girar
+    await Future.delayed(const Duration(seconds: 4));
+    final lastId = imagesIds.last;
+    imagesIds.clear();
+    imagesIds.add(lastId +1);
+    addFiveImages();
+
+    isLoading = false;
+    setState(() {});
+  }
+
+
   void addFiveImages(){
     final lastId = imagesIds.last;
     imagesIds.addAll( // agrega a imagesIds.
@@ -86,18 +106,22 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         context: context,
         //MediaQuery.removePadding + removeTop ignora espacio para barra tareas superior
         removeTop: true, 
-        child: ListView.builder(
-          controller: scrollController,
-          itemCount: imagesIds.length,
-          itemBuilder: (context, index) {
-            return FadeInImage(
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 300,
-              placeholder: const AssetImage("assets/Images/jar-loading.gif"), 
-              image: NetworkImage("https://picsum.photos/id/${imagesIds[index]}/500/300")
-            );
-          }
+        child: RefreshIndicator(
+          onRefresh:  onRefresh,
+          edgeOffset: 30,
+          child: ListView.builder(
+            controller: scrollController,
+            itemCount: imagesIds.length,
+            itemBuilder: (context, index) {
+              return FadeInImage(
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 300,
+                placeholder: const AssetImage("assets/Images/jar-loading.gif"), 
+                image: NetworkImage("https://picsum.photos/id/${imagesIds[index]}/500/300")
+              );
+            }
+          ),
         ),
       ),
 
