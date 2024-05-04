@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
 
 // MENU LATERAL DERECHO
 
 class SideMenu extends StatefulWidget {
-  const SideMenu({super.key});
+
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const SideMenu({
+    super.key, 
+    required this.scaffoldKey
+    });
 
   @override
   State<SideMenu> createState() => _SideMenuState();
@@ -13,7 +20,7 @@ class SideMenu extends StatefulWidget {
 class _SideMenuState extends State<SideMenu> {
 
   // opcion predeterminada del menu
-  int navDrawerIndex = 0;
+  int navDrawerIndex = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,7 @@ class _SideMenuState extends State<SideMenu> {
 
 
     return NavigationDrawer(
-      backgroundColor: Color.fromARGB(255, 189, 189, 189),
+      backgroundColor: const Color.fromARGB(255, 189, 189, 189),
       // opcion predeterminada del menu
       selectedIndex: navDrawerIndex,
       // cambia la opcion predeterminada al pulsar una de ellas
@@ -33,6 +40,12 @@ class _SideMenuState extends State<SideMenu> {
         setState(() {
           navDrawerIndex = value;
         });
+
+        // Cogemos el valor seleccionado y abrimos la ventana
+        var menuItem = appMenuItems[value];
+        context.push( menuItem.link );
+        // cerramos el sideMenu
+        widget.scaffoldKey.currentState?.closeDrawer();
       },
       children: [ // elementos del menu
 
@@ -47,26 +60,6 @@ class _SideMenuState extends State<SideMenu> {
         Padding(
           padding: const EdgeInsets.fromLTRB(28, 0, 16, 0), //left,top,right,bottom
           child: Text(" 🕳️ hasNotch= paddingTop>35? = $hasNotch"),
-        ),
-
-        // Barra separadora
-        const Padding( 
-          padding: EdgeInsets.fromLTRB(30,0,20,0),
-          child: Divider(),  
-        ),
-        const Padding( 
-          padding: EdgeInsets.fromLTRB(30,0,20,0),
-          child: Text("OPCIONES HECHAS A MANO")
-        ),
-
-        // Dos opciones hechas a mano
-        const NavigationDrawerDestination(
-          icon: Icon(Icons.add_shopping_cart_outlined), 
-          label: Text("Opcion Num.1")
-        ),
-        const NavigationDrawerDestination(
-          icon: Icon(Icons.add_shopping_cart_outlined), 
-          label: Text("Opcion Num.2")
         ),
 
         // Barra separadora
@@ -107,6 +100,29 @@ class _SideMenuState extends State<SideMenu> {
             label: Text ( item.title)
           )
         ),
+
+        /*
+        // Barra separadora
+        const Padding( 
+          padding: EdgeInsets.fromLTRB(30,0,20,0),
+          child: Divider(),  
+        ),
+        const Padding( 
+          padding: EdgeInsets.fromLTRB(30,0,20,0),
+          child: Text("OPCIONES HECHAS A MANO")
+        ),
+
+        // Dos opciones hechas a mano
+        const NavigationDrawerDestination(
+          icon: Icon(Icons.add_shopping_cart_outlined), 
+          label: Text("Opcion Num.1")
+        ),
+        const NavigationDrawerDestination(
+          icon: Icon(Icons.add_shopping_cart_outlined), 
+          label: Text("Opcion Num.2")
+        ),
+        */
+
       ],
     );
   }
