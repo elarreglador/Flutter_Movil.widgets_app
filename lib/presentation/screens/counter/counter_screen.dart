@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:widgets_app/presentation/providers/counter_provider.dart';
 
-class CounterScreen extends StatelessWidget {
+// ConsumerWidget es un widget de Riverpod
+class CounterScreen extends ConsumerWidget {
 
   static const name = 'Counter_Screen';
 
@@ -9,9 +12,11 @@ class CounterScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  // Riverpod requiere el parametro WidgetRef
+  Widget build(BuildContext context, WidgetRef ref) {
 
-    var valor = 10;
+    // watch queda pendiente del counterProvider
+    final int clickCounter = ref.watch( counterProvider );
 
     return Scaffold(
 
@@ -21,15 +26,15 @@ class CounterScreen extends StatelessWidget {
 
       body: Center(
         child: Text(
-          "Valor: $valor", 
+          "Valor: $clickCounter", 
           style: Theme.of(context).textTheme.titleLarge
         )
       ),
       
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          valor++;
-          //setState(() {});
+          // suma 1 y lee el estado de ref
+          ref.read( counterProvider.notifier ).state++;
         },
         child: const Icon(Icons.add),
       ),
