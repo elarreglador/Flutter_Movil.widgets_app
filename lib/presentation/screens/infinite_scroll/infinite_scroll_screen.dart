@@ -64,7 +64,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     if (!isMounted) return;
 
     isLoading = true;
-    setState(() {    });
+    setState(() {});
 
     // espera para ver el icono girar
     await Future.delayed(const Duration(seconds: 4));
