@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:widgets_app/presentation/providers/counter_provider.dart';
+import 'package:widgets_app/presentation/providers/theme_provider.dart';
 
 // ConsumerWidget es un widget de Riverpod
 class CounterScreen extends ConsumerWidget {
@@ -17,11 +18,24 @@ class CounterScreen extends ConsumerWidget {
 
     // watch queda pendiente del counterProvider
     final int clickCounter = ref.watch( counterProvider );
+    final bool darkMode = ref.watch( isDarkModeProvider );
 
     return Scaffold(
 
       appBar: AppBar(
         title: const Text ("Counter Screen"),
+        actions: [
+          IconButton(
+            onPressed: (){
+              ref.read(isDarkModeProvider.notifier).update((state) => !darkMode);
+            }, 
+            icon: Icon(
+              darkMode ?
+                Icons.dark_mode_outlined:
+                Icons.light_mode_outlined
+            )
+          )
+        ],
       ),
 
       body: Center(
