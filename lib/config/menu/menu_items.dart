@@ -80,4 +80,11 @@ const appMenuItems = <MenuItem> [
     icon: Icons.photo_camera
   ),
 
+  MenuItem(
+    title: "Theme Changer Screen", 
+    subTitle: "Cambia el tema de la aplicacion", 
+    link: "/theme_changer", 
+    icon: Icons.color_lens_outlined
+  ),
+
 ];

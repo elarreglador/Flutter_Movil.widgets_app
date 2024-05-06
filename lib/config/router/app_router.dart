@@ -7,6 +7,13 @@ import 'package:widgets_app/presentation/screens/screens.dart';
 final appRouter = GoRouter(
   initialLocation: "/",
   routes: [
+
+    GoRoute(
+      path: "/counter-river",
+      name: CounterScreen.name,
+      builder: (context, state) => const CounterScreen()
+    ),
+
     GoRoute(
       path: "/",
       name: HomeScreen.name,
@@ -62,9 +69,9 @@ final appRouter = GoRouter(
     ),
 
     GoRoute(
-      path: "/counter-river",
-      name: CounterScreen.name,
-      builder: (context, state) => const CounterScreen()
+      path: "/theme_changer",
+      name: ThemeChangerScreen.name,
+      builder: (context, state) => const ThemeChangerScreen()
     ),
 
   ]
