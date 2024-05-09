@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 
 const colorList = <Color>[
-  Colors.blue,
-  Colors.red,
-  Colors.green,
-  Colors.yellow,
-  Colors.pink,
+  Color.fromARGB(255, 0, 140, 255),
+  Color.fromARGB(255, 253, 0, 0),
+  Color.fromARGB(255, 0, 255, 8),
+  Color.fromARGB(255, 255, 230, 0),
   Colors.black,
-  Colors.amber,
-  Colors.cyan,
-  Colors.deepOrange,
   Colors.grey,
-  Colors.indigo
 ];
 
 class AppTheme {
 
   final int selectedColor;
+  final bool isDarkMode;
 
   AppTheme({
+    this.isDarkMode = false,
     this.selectedColor = 0
   }):
   assert (selectedColor >= 0,  
@@ -28,6 +25,10 @@ class AppTheme {
   
   ThemeData getTheme() => ThemeData(
     useMaterial3: true,
+    //modo oscuro
+    brightness: isDarkMode? 
+      Brightness.dark: 
+      Brightness.light,
     colorSchemeSeed: colorList [ selectedColor ],
     // Centra los titulos del AppBar
     appBarTheme: const AppBarTheme( centerTitle: true) 
