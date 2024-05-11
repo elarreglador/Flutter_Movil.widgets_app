@@ -58,7 +58,7 @@ class ThemeNotifier extends StateNotifier<AppTheme>{
   }
 
   // Funcion para cambiar el color del tema
-  void changeColorIndex(){
-    //TODO
+  void changeColorIndex(newColor){
+    state = state.copyWith( selectedColor: newColor );
   }
 }

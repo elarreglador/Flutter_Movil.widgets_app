@@ -36,6 +36,7 @@ class AppTheme {
 
 
   // Metodo para copiar la instancia actual de appTheme
+  // y reemplazar la actual por la nueva aplicando cambios
   // Opcional pasar param. color y si es modo oscuro.
   AppTheme copyWith({
     int? selectedColor,

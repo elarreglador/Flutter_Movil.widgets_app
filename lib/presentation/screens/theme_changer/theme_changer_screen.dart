@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:widgets_app/config/theme/app_theme.dart';
 import 'package:widgets_app/presentation/providers/theme_provider.dart';
 
 class ThemeChangerScreen extends ConsumerWidget {
@@ -48,7 +49,10 @@ class _ThemeChangerView extends ConsumerWidget {
   Widget build(BuildContext context, ref) { 
 
     final List<Color> colors = ref.watch( colorListProvider );
-    final int selectedColor = ref.watch(selectedColorProvider);
+
+    // Dejamos de usar una variable para usar un objeto que contiene la variable
+    //final int selectedColor = ref.watch(selectedColorProvider);
+    final AppTheme appTheme = ref.watch( themeNotifierProvider );
 
     return ListView.builder(
       itemCount: colors.length,
@@ -57,12 +61,15 @@ class _ThemeChangerView extends ConsumerWidget {
 
         return RadioListTile(
           title: Text("● Muestra de color █ ▓ ▒ ░", style: TextStyle( color: color)),
-          subtitle: Text( "Ref: ${color.value} \n selectedColor provider: $selectedColor" ),
+          subtitle: Text( "Ref: ${color.value} \n selectedColor provider: $appTheme" ),
           activeColor: color,
           value: index, 
-          groupValue: selectedColor, 
+          groupValue: appTheme.selectedColor, 
           onChanged: (value) {
-            ref.read(selectedColorProvider.notifier).state = index;
+            // previamente la gestion del color era por medio de una variable
+            //ref.read(selectedColorProvider.notifier).state = index;
+            // ahora se gestiona con un objeto appTheme
+            ref.read(themeNotifierProvider.notifier).changeColorIndex(value);
           },
         );
       }
