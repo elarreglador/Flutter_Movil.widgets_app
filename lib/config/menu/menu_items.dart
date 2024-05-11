@@ -18,6 +18,13 @@ class MenuItem{
 const appMenuItems = <MenuItem> [
 
   MenuItem(
+    title: "Theme Changer Screen", 
+    subTitle: "Cambia el tema de la aplicacion", 
+    link: "/theme_changer", 
+    icon: Icons.color_lens_outlined
+  ),
+
+  MenuItem(
     title: "Counter Screen (Riverpod)", 
     subTitle: "Introduccion al paquete de gestión de estados Riverpod", 
     link: "/counter-river", 
@@ -78,13 +85,6 @@ const appMenuItems = <MenuItem> [
     subTitle: "Listas infinitas y pull to refresh", 
     link: "/infinite", 
     icon: Icons.photo_camera
-  ),
-
-  MenuItem(
-    title: "Theme Changer Screen", 
-    subTitle: "Cambia el tema de la aplicacion", 
-    link: "/theme_changer", 
-    icon: Icons.color_lens_outlined
   ),
 
 ];
