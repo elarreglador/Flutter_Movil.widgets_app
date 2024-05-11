@@ -37,3 +37,17 @@ final colorListProvider = Provider((ref) => colorList);
 
 // Color seleccionado para el tema actual
 final selectedColorProvider = StateProvider((ref) => 2);
+
+
+
+
+// Da acceso a toda la app al tema a traves de Riverpod provider
+final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
+  (ref) => ThemeNotifier() //instancia de AppTheme que creamos abajo
+);
+
+class ThemeNotifier extends StateNotifier<AppTheme>{
+  // Creamos instancia de la clase AppTheme a compartir
+  // STATE o estado = new AppTheme();
+  ThemeNotifier(): super( AppTheme() ) ;
+}
