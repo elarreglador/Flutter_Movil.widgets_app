@@ -17,6 +17,8 @@ Proyecto en flutter que muestra los distintos widgets que podemos usar en una ap
 
 cursos.devtalles.com
 
+![gif de la app](https://github.com/elarreglador/Flutter_Movil.widgets_app/blob/main/SCREENSHOTS/Captura%20de%20pantalla%20de%202024-05-11%2017-12-23.gif)
+
 ************************************
 TEMAS PUNTUALES DE LA SECCION
 ************************************
