@@ -34,4 +34,15 @@ class AppTheme {
     appBarTheme: const AppBarTheme( centerTitle: true) 
   );
 
+
+  // Metodo para copiar la instancia actual de appTheme
+  // Opcional pasar param. color y si es modo oscuro.
+  AppTheme copyWith({
+    int? selectedColor,
+    bool? isDarkMode
+  }) => AppTheme(
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkMode: isDarkMode ?? this.isDarkMode
+  );
+
 }

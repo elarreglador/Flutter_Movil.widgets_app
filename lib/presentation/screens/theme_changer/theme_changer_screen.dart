@@ -13,7 +13,7 @@ class ThemeChangerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final bool darkMode = ref.watch( isDarkModeProvider );
+    final darkMode = ref.watch( themeNotifierProvider ).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
@@ -21,8 +21,11 @@ class ThemeChangerScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: (){
-              //ref.read(isDarkModeProvider.notifier).update((state) => !darkMode);
-              ref.read(isDarkModeProvider.notifier).state = !darkMode;
+              // dejamos de usar una variable para usar un objeto appTheme.
+              // dos ejemplos de uso de ref.read con la variable darkMode:
+              // ref.read(isDarkModeProvider.notifier).update((state) => !darkMode);
+              // ref.read(isDarkModeProvider.notifier).state = !darkMode;
+              ref.read(themeNotifierProvider.notifier).toggleDarkMode();
             }, 
             icon: Icon(
               darkMode ?

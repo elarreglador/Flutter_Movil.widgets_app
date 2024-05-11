@@ -50,4 +50,15 @@ class ThemeNotifier extends StateNotifier<AppTheme>{
   // Creamos instancia de la clase AppTheme a compartir
   // STATE o estado = new AppTheme();
   ThemeNotifier(): super( AppTheme() ) ;
+
+  // Funcion para cambiar estado del darkMode
+  void toggleDarkMode() {
+    // copyWith genera una copia del estado cambiando isDarkMode a !isDarkMode
+    state = state.copyWith( isDarkMode: !state.isDarkMode );
+  }
+
+  // Funcion para cambiar el color del tema
+  void changeColorIndex(){
+    //TODO
+  }
 }

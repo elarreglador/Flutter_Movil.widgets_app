@@ -18,7 +18,12 @@ class CounterScreen extends ConsumerWidget {
 
     // watch queda pendiente del counterProvider
     final int clickCounter = ref.watch( counterProvider );
-    final bool darkMode = ref.watch( isDarkModeProvider );
+
+    // Usamos el objeto appTheme desde el provider para cambiar su variable isDarkMode
+    // en lugar de usar la variable darkMode. Ver IconButton.onPressed mas abajo
+    //final bool darkMode = ref.watch( isDarkModeProvider );
+    final darkMode = ref.watch( themeNotifierProvider ).isDarkMode;
+
 
     return Scaffold(
 
@@ -27,7 +32,8 @@ class CounterScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: (){
-              ref.read(isDarkModeProvider.notifier).update((state) => !darkMode);
+              //ref.read(isDarkModeProvider.notifier).update((state) => !darkMode);
+              ref.read(themeNotifierProvider.notifier).toggleDarkMode();
             }, 
             icon: Icon(
               darkMode ?
